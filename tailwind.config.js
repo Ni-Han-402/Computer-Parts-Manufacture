@@ -3,12 +3,12 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        mytheme: {
+        pcHouseTheme: {
           "primary": "#a2b3f9",
           "secondary": "#188196",
           "accent": "#f9c85c",
           "neutral": "#151A1E",
-          "base-100": "#EDE7F3",
+          "base-100": "#ffffff",
           "info": "#9BB7F3",
           "success": "#28B888",
           "warning": "#FAB952",
