@@ -5,6 +5,7 @@ import Login from "../pages/Login/Login";
 import Reviews from "../pages/Reviews/Reviews";
 
 export const publicRoute = [
+  { path: "/", name: "Home", Component: Home },
   { path: "/home", name: "Home", Component: Home },
   { path: "/reviews", name: "Home", Component: Reviews },
   { path: "/blog", name: "Home", Component: Blog },

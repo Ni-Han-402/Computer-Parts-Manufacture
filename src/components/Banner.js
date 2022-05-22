@@ -7,8 +7,8 @@ import slider3 from "../assests/images/slider-3.png";
 const Banner = () => {
   return (
     <div className="max-w-screen-xl mx-auto px-6 lg:px-12">
-      <div className="grid grid-cols-1">
-        <div class="hero bg-accent rounded-xl">
+      <div className="grid grid-cols-1 card lg:card-side bg-base-100 shadow-xl">
+        <div class="hero rounded-xl">
           <div class="hero-content grid grid-cols-1">
             <img src={banner} alt="" className="md:max-w-screen-sm mx-auto" />
             <div className="text-center md:max-w-screen-sm mx-auto">
