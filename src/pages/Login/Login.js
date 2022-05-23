@@ -2,6 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import loginImg from "../../assests/images/login.png";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
+import Loding from "../../components/Loding";
 
 const Login = () => {
   const {
@@ -11,8 +14,23 @@ const Login = () => {
     reset,
   } = useForm();
 
+  let signInError;
+  // LOGIN WITH EMAIL & PASSWORD
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  // Loding
+  if (loading) {
+    return <Loding></Loding>;
+  }
+  // Error
+  if (error) {
+    signInError = <p className="text-error">{error?.message}</p>;
+  }
+  // collect data from input form
   const onSubmit = (data) => {
     console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
     reset();
   };
   return (
@@ -93,6 +111,7 @@ const Login = () => {
                 </a>
               </label>
             </div>
+            {signInError}
             <input class="btn btn-primary w-full" type="submit" value="LOGIN" />
           </form>
           <p>
