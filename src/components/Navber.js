@@ -28,44 +28,44 @@ const Navber = ({ children }) => {
     </>
   );
   return (
-    <div class="drawer">
-      <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content flex flex-col">
-        <div class="container mx-auto navbar bg-base-100">
-          <div class="flex-1">
+    <div className="drawer">
+      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col">
+        <div className="container mx-auto navbar bg-base-100">
+          <div className="flex-1">
             <img className="w-28 md:w-36" src={logo} alt="" />
           </div>
-          <div class="flex-none lg:hidden">
-            <label for="my-drawer-3" class="btn btn-square btn-ghost">
+          <div className="flex-none lg:hidden">
+            <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                class="inline-block w-6 h-6 stroke-current"
+                className="inline-block w-6 h-6 stroke-current"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M4 6h16M4 12h16M4 18h16"
                 ></path>
               </svg>
             </label>
           </div>
-          <div class="flex-none hidden lg:block  gap-5">
-            <ul class="menu menu-horizontal gap-x-5">
+          <div className="flex-none hidden lg:block  gap-5">
+            <ul className="menu menu-horizontal gap-x-5">
               {navItem}
 
-              <li class="dropdown lg:dropdown-end dropdown-hover">
+              <li className="dropdown lg:dropdown-end dropdown-hover">
                 <label
-                  tabindex="0"
-                  class="btn btn-primary btn-outline m-1 rounded-lg"
+                  tabIndex="0"
+                  className="btn btn-primary btn-outline m-1 rounded-lg"
                 >
                   LOGIN
                 </label>
                 <ul
-                  tabindex="0"
-                  class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                  tabIndex="0"
+                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
                     <a>Profile</a>
@@ -81,9 +81,9 @@ const Navber = ({ children }) => {
         {children}
       </div>
 
-      <div class="drawer-side">
-        <label for="my-drawer-3" class="drawer-overlay"></label>
-        <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">{navItem}</ul>
+      <div className="drawer-side">
+        <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
+        <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">{navItem}</ul>
       </div>
     </div>
   );

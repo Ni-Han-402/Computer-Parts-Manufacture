@@ -2,14 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import registerImg from "../../assests/images/register.png";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loding from "../../components/Loding";
 
 const Register = () => {
-  // Register WITH EMAIL & PASSWORD
-  const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
   const {
     register,
     formState: { errors },
@@ -19,16 +19,26 @@ const Register = () => {
 
   let registerError;
 
-  if (user) {
-    console.log(user);
+  // Register WITH EMAIL & PASSWORD
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  // LOGIN WITH GOOGLE
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+  if (user || gUser) {
+    console.log(user, gUser);
   }
   // Loding
-  if (loading) {
+  if (loading || gLoading) {
     return <Loding></Loding>;
   }
   // Error
-  if (error) {
-    registerError = <p className="text-error">{error?.message}</p>;
+  if (error || gError) {
+    registerError = (
+      <p className="text-error">
+        {error?.message} || {gError?.message}
+      </p>
+    );
   }
 
   // collect data from input form
@@ -40,18 +50,18 @@ const Register = () => {
 
   return (
     <div className="container mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 card my-20 mx-6 bg-base-100 shadow-xl">
-        <div class="card-body">
-          <h2 class="card-title text-primary">REGISTER</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 card my-20 mx-6 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title text-primary">REGISTER</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Your Name</span>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Your Name</span>
               </label>
               <input
                 type="text"
                 placeholder="Your Name"
-                class="input input-bordered"
+                className="input input-bordered"
                 {...register("name", {
                   required: {
                     value: true,
@@ -59,23 +69,23 @@ const Register = () => {
                   },
                 })}
               />
-              <label class="label">
+              <label className="label">
                 {errors.name?.type === "required" && (
-                  <span class="label-text text-error">
+                  <span className="label-text text-error">
                     {errors.name.message}
                   </span>
                 )}
               </label>
             </div>
 
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Email</span>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
               </label>
               <input
                 type="text"
                 placeholder="email"
-                class="input input-bordered"
+                className="input input-bordered"
                 {...register("email", {
                   required: {
                     value: true,
@@ -87,27 +97,27 @@ const Register = () => {
                   },
                 })}
               />
-              <label class="label">
+              <label className="label">
                 {errors.email?.type === "required" && (
-                  <span class="label-text text-error">
+                  <span className="label-text text-error">
                     {errors.email.message}
                   </span>
                 )}
                 {errors.email?.type === "pattern" && (
-                  <span class="label-text text-error">
+                  <span className="label-text text-error">
                     {errors.email.message}
                   </span>
                 )}
               </label>
             </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Password</span>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
               </label>
               <input
                 type="password"
                 placeholder="password"
-                class="input input-bordered"
+                className="input input-bordered"
                 {...register("password", {
                   required: {
                     value: true,
@@ -119,27 +129,27 @@ const Register = () => {
                   },
                 })}
               />
-              <label class="label">
+              <label className="label">
                 {errors.password?.type === "required" && (
-                  <span class="label-text text-error">
+                  <span className="label-text text-error">
                     {errors.password.message}
                   </span>
                 )}
                 {errors.password?.type === "minLength" && (
-                  <span class="label-text text-error">
+                  <span className="label-text text-error">
                     {errors.password.message}
                   </span>
                 )}
               </label>
-              <label class="label">
-                <a href="#" class="label-text-alt link link-hover">
+              <label className="label">
+                <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
                 </a>
               </label>
             </div>
             {registerError}
             <input
-              class="btn btn-primary w-full"
+              className="btn btn-primary w-full"
               type="submit"
               value="REGISTER"
             />
@@ -152,16 +162,19 @@ const Register = () => {
               </Link>
             </small>
           </p>
-          <div class="flex w-full items-center">
-            <div class="grid h-[2px] flex-grow card bg-primary rounded-box place-items-center">
+          <div className="flex w-full items-center">
+            <div className="grid h-[2px] flex-grow card bg-primary rounded-box place-items-center">
               <hr />
             </div>
-            <div class="divider divider-horizontal text-primary">OR</div>
-            <div class="grid h-[2px] flex-grow card bg-primary rounded-box place-items-center">
+            <div className="divider divider-horizontal text-primary">OR</div>
+            <div className="grid h-[2px] flex-grow card bg-primary rounded-box place-items-center">
               <hr />
             </div>
           </div>
-          <button className="btn btn-primary btn-outline w-full">
+          <button
+            className="btn btn-primary btn-outline w-full"
+            onClick={() => signInWithGoogle()}
+          >
             CONTINUE WITH GOOGLE
           </button>
         </div>
