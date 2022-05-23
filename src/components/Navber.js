@@ -31,7 +31,7 @@ const Navber = ({ children }) => {
     <div class="drawer">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
-        <div class="max-w-screen-xl mx-auto lg:px-12 navbar bg-base-100">
+        <div class="container mx-auto navbar bg-base-100">
           <div class="flex-1">
             <img className="w-28 md:w-36" src={logo} alt="" />
           </div>

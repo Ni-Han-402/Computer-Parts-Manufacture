@@ -1,9 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import loginImg from "../../assests/images/login.png";
+import registerImg from "../../assests/images/register.png";
 
-const Login = () => {
+const Register = () => {
   const {
     register,
     formState: { errors },
@@ -15,15 +15,37 @@ const Login = () => {
     console.log(data);
     reset();
   };
+
   return (
     <div className="container mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 card lg:card-side mx-6 my-20 bg-base-100 shadow-xl">
-        <figure>
-          <img src={loginImg} alt="Album" />
-        </figure>
+      <div class="grid grid-cols-1 md:grid-cols-2 card my-20 mx-6 bg-base-100 shadow-xl">
         <div class="card-body">
-          <h2 class="card-title text-primary">LOGIN</h2>
+          <h2 class="card-title text-primary">REGISTER</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Your Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Your Name"
+                class="input input-bordered"
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "Name is required",
+                  },
+                })}
+              />
+              <label class="label">
+                {errors.name?.type === "required" && (
+                  <span class="label-text text-error">
+                    {errors.name.message}
+                  </span>
+                )}
+              </label>
+            </div>
+
             <div class="form-control">
               <label class="label">
                 <span class="label-text">Email</span>
@@ -93,13 +115,17 @@ const Login = () => {
                 </a>
               </label>
             </div>
-            <input class="btn btn-primary w-full" type="submit" value="LOGIN" />
+            <input
+              class="btn btn-primary w-full"
+              type="submit"
+              value="REGISTER"
+            />
           </form>
           <p>
             <small>
-              Don't have an account?{" "}
-              <Link className="text-primary" to="/register">
-                create account
+              Already have an account?{" "}
+              <Link className="text-primary" to="/login">
+                please login
               </Link>
             </small>
           </p>
@@ -116,9 +142,12 @@ const Login = () => {
             CONTINUE WITH GOOGLE
           </button>
         </div>
+        <figure>
+          <img src={registerImg} alt="Album" />
+        </figure>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
