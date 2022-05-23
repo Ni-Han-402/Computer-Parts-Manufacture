@@ -2,8 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import registerImg from "../../assests/images/register.png";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
+import Loding from "../../components/Loding";
 
 const Register = () => {
+  // Register WITH EMAIL & PASSWORD
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
   const {
     register,
     formState: { errors },
@@ -11,8 +17,24 @@ const Register = () => {
     reset,
   } = useForm();
 
+  let registerError;
+
+  if (user) {
+    console.log(user);
+  }
+  // Loding
+  if (loading) {
+    return <Loding></Loding>;
+  }
+  // Error
+  if (error) {
+    registerError = <p className="text-error">{error?.message}</p>;
+  }
+
+  // collect data from input form
   const onSubmit = (data) => {
     console.log(data);
+    createUserWithEmailAndPassword(data.email, data.password);
     reset();
   };
 
@@ -115,6 +137,7 @@ const Register = () => {
                 </a>
               </label>
             </div>
+            {registerError}
             <input
               class="btn btn-primary w-full"
               type="submit"
