@@ -1,8 +1,5 @@
 import React from "react";
-import slider1 from "../assests/images/slider-1.png";
-import banner from "../assests/images/banner-1.png";
-import slider2 from "../assests/images/slider-2.png";
-import slider3 from "../assests/images/slider-3.png";
+import banner from "../../assests/images/banner-1.png";
 
 const Banner = () => {
   return (

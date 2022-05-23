@@ -5,7 +5,7 @@ module.exports = {
       {
         pcHouseTheme: {
           primary: "#188196",
-          secondary: "#a2b3f9",
+          secondary: "#191E24",
           accent: "#FDE68A",
           neutral: "#151A1E",
           "base-100": "#ffffff",
