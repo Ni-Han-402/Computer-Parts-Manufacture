@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../assests/images/login.png";
 import {
   useSignInWithEmailAndPassword,
@@ -16,6 +16,7 @@ const Login = () => {
     handleSubmit,
     reset,
   } = useForm();
+  const navigate = useNavigate();
 
   let signInError;
   // LOGIN WITH EMAIL & PASSWORD
@@ -24,6 +25,10 @@ const Login = () => {
   // LOGIN WITH GOOGLE
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
+  // User
+  if (user || gUser) {
+    navigate("/home");
+  }
   // Loding
   if (loading || gLoading) {
     return <Loding></Loding>;

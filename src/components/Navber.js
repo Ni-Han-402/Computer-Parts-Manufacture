@@ -1,8 +1,15 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { NavLink } from "react-router-dom";
 import logo from "../assests/images/pc-house-logo.png";
+import auth from "../firebase.init";
 
 const Navber = ({ children }) => {
+  const [user, loading, error] = useAuthState(auth);
+  const logout = () => {
+    signOut(auth);
+  };
   const navItem = (
     <>
       <li>
@@ -61,7 +68,7 @@ const Navber = ({ children }) => {
                   tabIndex="0"
                   className="btn btn-primary btn-outline m-1 rounded-lg"
                 >
-                  LOGIN
+                  ACCOUNT
                 </label>
                 <ul
                   tabIndex="0"
@@ -71,7 +78,16 @@ const Navber = ({ children }) => {
                     <a>Profile</a>
                   </li>
                   <li>
-                    <NavLink to="/login">LOGIN</NavLink>
+                    {user ? (
+                      <button
+                        onClick={logout}
+                        className="btn btn-primary text-base-200"
+                      >
+                        LOGOUT
+                      </button>
+                    ) : (
+                      <NavLink to="/login">LOGIN</NavLink>
+                    )}
                   </li>
                 </ul>
               </li>

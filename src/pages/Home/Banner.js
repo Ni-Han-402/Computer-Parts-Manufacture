@@ -4,7 +4,7 @@ import banner from "../../assests/images/banner-1.png";
 const Banner = () => {
   return (
     <div className="container mx-auto px-6">
-      <div className="grid grid-cols-1 card lg:card-side bg-base-100 shadow-xl">
+      <div className="grid grid-cols-1 card lg:card-side bg-base-200 shadow-xl">
         <div className="hero rounded-xl">
           <div className="hero-content grid grid-cols-1">
             <img src={banner} alt="" className="md:max-w-screen-sm mx-auto" />

@@ -1,10 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import registerImg from "../../assests/images/register.png";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loding from "../../components/Loding";
@@ -16,6 +17,7 @@ const Register = () => {
     handleSubmit,
     reset,
   } = useForm();
+  const navigate = useNavigate();
 
   let registerError;
 
@@ -24,28 +26,32 @@ const Register = () => {
     useCreateUserWithEmailAndPassword(auth);
   // LOGIN WITH GOOGLE
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [updateProfile, updating, updatedError] = useUpdateProfile(auth);
 
-  if (user || gUser) {
-    console.log(user, gUser);
+  // User
+  if (gUser) {
+    navigate("/home");
   }
   // Loding
-  if (loading || gLoading) {
+  if (loading || gLoading || updating) {
     return <Loding></Loding>;
   }
   // Error
-  if (error || gError) {
+  if (error || gError || updatedError) {
     registerError = (
       <p className="text-error">
-        {error?.message} || {gError?.message}
+        {error?.message} || {gError?.message || updatedError?.message}
       </p>
     );
   }
 
   // collect data from input form
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    createUserWithEmailAndPassword(data.email, data.password);
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
     reset();
+    navigate("/home");
   };
 
   return (
