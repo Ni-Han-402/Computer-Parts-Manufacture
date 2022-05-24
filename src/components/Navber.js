@@ -4,8 +4,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { NavLink } from "react-router-dom";
 import logo from "../assests/images/pc-house-logo.png";
 import auth from "../firebase.init";
+import useAdmin from "../hooks/useAdmin";
 
 const Navber = ({ children }) => {
+  const [admin] = useAdmin();
   const [user, loading, error] = useAuthState(auth);
   const logout = () => {
     signOut(auth);
@@ -17,6 +19,13 @@ const Navber = ({ children }) => {
           Home
         </NavLink>
       </li>
+      {admin && (
+        <li>
+          <NavLink to="/dashboard" className="rounded-lg">
+            Dashboard
+          </NavLink>
+        </li>
+      )}
       <li>
         <NavLink to="/reviews" className="rounded-lg">
           Reviews
@@ -99,7 +108,37 @@ const Navber = ({ children }) => {
 
       <div className="drawer-side">
         <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-        <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">{navItem}</ul>
+        <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">
+          {navItem}
+          <div
+            tabindex="0"
+            class="collapse collapse-arrow border border-primary bg-base-100 rounded-box"
+          >
+            <div class="collapse-title text-xl font-medium">ACCOUNT</div>
+            <div class="collapse-content">
+              <ul
+                tabIndex="0"
+                className="dropdown-content menu shadow bg-base-100 rounded-box"
+              >
+                <li>
+                  <a>Profile</a>
+                </li>
+                <li>
+                  {user ? (
+                    <button
+                      onClick={logout}
+                      className="btn btn-primary text-base-200"
+                    >
+                      LOGOUT
+                    </button>
+                  ) : (
+                    <NavLink to="/login">LOGIN</NavLink>
+                  )}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ul>
       </div>
     </div>
   );
