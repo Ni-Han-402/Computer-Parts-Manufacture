@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ComputerPart = ({ item }) => {
-  const { name, img, price, minimumQuantity, availableQuantity } = item;
+  const { _id, name, img, price, minimumQuantity, availableQuantity } = item;
+
+  const navigate = useNavigate();
+  const navigatePartDetail = (id) => {
+    navigate(`/part/${id}`);
+  };
   return (
     <div class="card w-100 bg-base-100 shadow-xl">
       <figure className="bg-base-200 h-96">
@@ -16,7 +22,12 @@ const ComputerPart = ({ item }) => {
         <p>If a dog chews shoes whose shoes does he choose?</p>
         <p>Minimum: {minimumQuantity}</p>
         <p>Available: {availableQuantity}</p>
-        <button className="btn btn-secondary">PURCHASE</button>
+        <button
+          onClick={() => navigatePartDetail(_id)}
+          className="btn btn-secondary"
+        >
+          PURCHASE
+        </button>
       </div>
     </div>
   );
