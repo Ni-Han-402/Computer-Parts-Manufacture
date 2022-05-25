@@ -1,14 +1,15 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import logo from "../assests/images/pc-house-logo.png";
 import auth from "../firebase.init";
 import useAdmin from "../hooks/useAdmin";
 
 const Navber = ({ children }) => {
+  const { pathname } = useLocation();
   const [admin] = useAdmin();
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const logout = () => {
     signOut(auth);
   };
@@ -21,7 +22,7 @@ const Navber = ({ children }) => {
       </li>
       {admin && (
         <li>
-          <NavLink to="/dashboard" className="rounded-lg">
+          <NavLink to="/dashboard/my-profile" className="rounded-lg">
             Dashboard
           </NavLink>
         </li>
@@ -41,13 +42,52 @@ const Navber = ({ children }) => {
           Contact
         </NavLink>
       </li>
+      <li>
+        {user ? (
+          <button
+            onClick={logout}
+            className="btn btn-primary rounded-lg text-base-200"
+          >
+            LOGOUT
+          </button>
+        ) : (
+          <NavLink
+            to="/login"
+            className="btn btn-primary rounded-lg text-base-200"
+          >
+            LOGIN
+          </NavLink>
+        )}
+      </li>
     </>
   );
   return (
-    <div className="drawer h-auto">
+    <div className="drawer drawer-end h-auto">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         <div className="container mx-auto navbar bg-base-100">
+          {pathname.includes("dashboard") && (
+            <label
+              tabindex="0"
+              for="my-drawer-2"
+              class="btn btn-ghost lg:hidden"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h7"
+                />
+              </svg>
+            </label>
+          )}
           <div className="flex-1">
             <img className="w-28 md:w-36" src={logo} alt="" />
           </div>
@@ -69,38 +109,7 @@ const Navber = ({ children }) => {
             </label>
           </div>
           <div className="flex-none hidden lg:block  gap-5">
-            <ul className="menu menu-horizontal gap-x-5">
-              {navItem}
-
-              <li className="dropdown lg:dropdown-end dropdown-hover">
-                <label
-                  tabIndex="0"
-                  className="btn btn-primary btn-outline m-1 rounded-lg"
-                >
-                  ACCOUNT
-                </label>
-                <ul
-                  tabIndex="0"
-                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    <a>Profile</a>
-                  </li>
-                  <li>
-                    {user ? (
-                      <button
-                        onClick={logout}
-                        className="btn btn-primary text-base-200"
-                      >
-                        LOGOUT
-                      </button>
-                    ) : (
-                      <NavLink to="/login">LOGIN</NavLink>
-                    )}
-                  </li>
-                </ul>
-              </li>
-            </ul>
+            <ul className="menu menu-horizontal gap-x-5">{navItem}</ul>
           </div>
         </div>
         {children}
@@ -108,37 +117,7 @@ const Navber = ({ children }) => {
 
       <div className="drawer-side">
         <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-        <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">
-          {navItem}
-          <div
-            tabindex="0"
-            class="collapse collapse-arrow border border-primary bg-base-100 rounded-box"
-          >
-            <div class="collapse-title text-xl font-medium">ACCOUNT</div>
-            <div class="collapse-content">
-              <ul
-                tabIndex="0"
-                className="dropdown-content menu shadow bg-base-100 rounded-box"
-              >
-                <li>
-                  <a>Profile</a>
-                </li>
-                <li>
-                  {user ? (
-                    <button
-                      onClick={logout}
-                      className="btn btn-primary text-base-200"
-                    >
-                      LOGOUT
-                    </button>
-                  ) : (
-                    <NavLink to="/login">LOGIN</NavLink>
-                  )}
-                </li>
-              </ul>
-            </div>
-          </div>
-        </ul>
+        <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">{navItem}</ul>
       </div>
     </div>
   );
