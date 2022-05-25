@@ -9,6 +9,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loding from "../../components/Loding";
+import useToken from "../../hooks/useToken";
 
 const Register = () => {
   const {
@@ -28,8 +29,10 @@ const Register = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile, updating, updatedError] = useUpdateProfile(auth);
 
+  const [token] = useToken(user || gUser);
+
   // User
-  if (gUser) {
+  if (user || gUser) {
     navigate("/home");
   }
   // Loding
