@@ -31,10 +31,13 @@ const Register = () => {
 
   const [token] = useToken(user || gUser);
 
-  // User
-  if (user || gUser) {
+  if (token) {
     navigate("/home");
   }
+  // User
+  // if (user || gUser) {
+  //   navigate("/home");
+  // }
   // Loding
   if (loading || gLoading || updating) {
     return <Loding></Loding>;
