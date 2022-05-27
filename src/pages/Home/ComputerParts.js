@@ -8,7 +8,7 @@ const ComputerParts = () => {
   const [parts, setParts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/part")
+    fetch("https://nameless-refuge-04709.herokuapp.com/part")
       .then((res) => res.json())
       .then((data) => setParts(data));
   }, []);

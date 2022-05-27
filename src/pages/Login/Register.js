@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import registerImg from "../../assests/images/register.png";
 import {
   useCreateUserWithEmailAndPassword,
@@ -19,6 +19,8 @@ const Register = () => {
     reset,
   } = useForm();
   const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
   let registerError;
 
@@ -29,11 +31,14 @@ const Register = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile, updating, updatedError] = useUpdateProfile(auth);
 
+  // Token
   const [token] = useToken(user || gUser);
 
-  if (token) {
-    navigate("/home");
-  }
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
   // User
   // if (user || gUser) {
   //   navigate("/home");

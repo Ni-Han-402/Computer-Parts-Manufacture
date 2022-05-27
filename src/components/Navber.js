@@ -21,7 +21,7 @@ const Navber = ({ children }) => {
           Home
         </NavLink>
       </li>
-      {admin && (
+      {user && (
         <li>
           <NavLink to="/dashboard/my-profile" className="rounded-lg">
             Dashboard

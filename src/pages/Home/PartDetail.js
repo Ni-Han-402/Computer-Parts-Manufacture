@@ -34,7 +34,7 @@ const PartDetail = () => {
       setStockQuan(newStock);
     }
 
-    await fetch("http://localhost:5000/order", {
+    await fetch("https://nameless-refuge-04709.herokuapp.com/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -50,7 +50,7 @@ const PartDetail = () => {
   };
 
   useEffect(() => {
-    const url = `http://localhost:5000/part/${partId}`;
+    const url = `https://nameless-refuge-04709.herokuapp.com/part/${partId}`;
 
     fetch(url)
       .then((res) => res.json())

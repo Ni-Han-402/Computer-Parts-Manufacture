@@ -9,7 +9,7 @@ const Users = () => {
     isLoading,
     refetch,
   } = useQuery("user", () =>
-    fetch("http://localhost:5000/user", {
+    fetch("https://nameless-refuge-04709.herokuapp.com/user", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -21,7 +21,6 @@ const Users = () => {
   }
   return (
     <div className="p-10">
-      <h1>Users: {user.length}</h1>
       <div class="overflow-x-auto">
         <table class="table w-full">
           <thead>
@@ -29,12 +28,17 @@ const Users = () => {
               <th className="bg-secondary text-base-100"></th>
               <th className="bg-secondary text-base-100">Name</th>
               <th className="bg-secondary text-base-100">Role</th>
-              <th className="bg-secondary text-base-100">Favorite Color</th>
+              <th className="bg-secondary text-base-100">Remove User</th>
             </tr>
           </thead>
           <tbody>
-            {user.map((user) => (
-              <UserRow key={user._id} user={user} refetch={refetch}></UserRow>
+            {user.map((user, index) => (
+              <UserRow
+                key={user._id}
+                index={index}
+                user={user}
+                refetch={refetch}
+              ></UserRow>
             ))}
           </tbody>
         </table>

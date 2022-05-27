@@ -11,12 +11,15 @@ const MyOrder = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/order?email=${user.email}`, {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
+      fetch(
+        `https://nameless-refuge-04709.herokuapp.com/order?email=${user.email}`,
+        {
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
         .then((res) => {
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
@@ -33,7 +36,7 @@ const MyOrder = () => {
   return (
     <div className="p-10">
       <h1 className="text-2xl font-bold mb-5">Total Orders: {orders.length}</h1>
-      {/*  */}
+
       <div class="overflow-x-auto">
         <table class="table w-full">
           <thead>
