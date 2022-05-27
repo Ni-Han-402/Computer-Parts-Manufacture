@@ -4,7 +4,11 @@ import Loding from "../../components/Loding";
 import ProductRow from "./ProductRow";
 
 const ManageProducts = () => {
-  const { data: parts, isLoading } = useQuery("parts", () =>
+  const {
+    data: parts,
+    isLoading,
+    refetch,
+  } = useQuery("parts", () =>
     fetch("https://nameless-refuge-04709.herokuapp.com/part", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -31,7 +35,12 @@ const ManageProducts = () => {
           </thead>
           <tbody>
             {parts.map((part, index) => (
-              <ProductRow key={part._id} index={index} part={part}></ProductRow>
+              <ProductRow
+                key={part._id}
+                index={index}
+                part={part}
+                refetch={refetch}
+              ></ProductRow>
             ))}
           </tbody>
         </table>

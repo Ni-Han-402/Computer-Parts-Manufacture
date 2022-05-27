@@ -1,17 +1,8 @@
-import React, { useEffect, useState } from "react";
 import ComputerPart from "./ComputerPart";
-import product1 from "../../assests/images/product-1.png";
-import product2 from "../../assests/images/product-2.png";
-import product3 from "../../assests/images/product-3.png";
+import useParts from "../../hooks/useParts";
 
 const ComputerParts = () => {
-  const [parts, setParts] = useState([]);
-
-  useEffect(() => {
-    fetch("https://nameless-refuge-04709.herokuapp.com/part")
-      .then((res) => res.json())
-      .then((data) => setParts(data));
-  }, []);
+  const [parts, setParts] = useParts();
   return (
     <div className="container mx-auto px-6 my-10">
       <h1 className="text-2xl lg:text-3xl font-bold text-primary my-10">
