@@ -1,6 +1,24 @@
-# Getting Started with Create React App
+# Pc-House
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Firebase [Live Link](https://pc-house-650a4.web.app/).
+
+## Create
+
+- [Home Section](https://sofa-mart.web.app/home)
+- [Dashboard Section](https://pc-house-650a4.web.app/dashboard/my-profile)
+- [Parts Section](https://pc-house-650a4.web.app/parts)
+- [Review Section](https://pc-house-650a4.web.app/reviews)
+- [Login Section](https://pc-house-650a4.web.app/login)
+
+## Using Framwork/Library
+
+- React
+- React Router
+- Tailwind
+- React Query
+- React Firbase Hook
+- react-hook-form
+- DaisyUI
 
 ## Available Scripts
 

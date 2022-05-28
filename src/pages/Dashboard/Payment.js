@@ -12,7 +12,7 @@ const stripePromise = loadStripe(
 
 const Payment = () => {
   const { orderId } = useParams();
-  const url = `http://localhost:5000/order/${orderId}`;
+  const url = `https://nameless-refuge-04709.herokuapp.com/order/${orderId}`;
 
   const {
     data: order,
