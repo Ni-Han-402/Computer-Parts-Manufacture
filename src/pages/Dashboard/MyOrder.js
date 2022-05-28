@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const MyOrder = () => {
@@ -41,12 +41,14 @@ const MyOrder = () => {
         <table class="table w-full">
           <thead>
             <tr>
-              <th className="bg-secondary text-base-100"></th>
-              <th className="bg-secondary text-base-100">Name</th>
-              <th className="bg-secondary text-base-100">Quantity</th>
-              <th className="bg-secondary text-base-100">Email</th>
-              <th className="bg-secondary text-base-100">Adress</th>
-              <th className="bg-secondary text-base-100">Phone</th>
+              <th className="bg-primary text-base-100"></th>
+              <th className="bg-primary text-base-100">Name</th>
+              <th className="bg-primary text-base-100">Quantity</th>
+              <th className="bg-primary text-base-100">Price</th>
+              <th className="bg-primary text-base-100">Email</th>
+              <th className="bg-primary text-base-100">Adress</th>
+              <th className="bg-primary text-base-100">Phone</th>
+              <th className="bg-primary text-base-100">Pay</th>
             </tr>
           </thead>
           <tbody>
@@ -55,9 +57,20 @@ const MyOrder = () => {
                 <th>{index + 1}</th>
                 <td>{order.productName}</td>
                 <td>{order.quantity}</td>
+                <td>{order.price}</td>
                 <td>{order.email}</td>
                 <td>{order.adress}</td>
                 <td>{order.phone}</td>
+                <td>
+                  {order.price && !order.paid && (
+                    <Link to={`/dashboard/payment/${order._id}`}>
+                      <button className="btn btn-xs btn-primary">PAY</button>
+                    </Link>
+                  )}
+                  {order.price && order.paid && (
+                    <span className="text-success">PAID</span>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

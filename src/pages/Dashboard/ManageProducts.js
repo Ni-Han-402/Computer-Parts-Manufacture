@@ -24,13 +24,13 @@ const ManageProducts = () => {
         <table class="table w-full">
           <thead>
             <tr>
-              <th className="bg-secondary text-base-100"></th>
-              <th className="bg-secondary text-base-100">Avatar</th>
-              <th className="bg-secondary text-base-100">Product Name</th>
-              <th className="bg-secondary text-base-100">Price</th>
-              <th className="bg-secondary text-base-100">Min Quantity</th>
-              <th className="bg-secondary text-base-100">Max Quantity</th>
-              <th className="bg-secondary text-base-100">Remove Product</th>
+              <th className="bg-primary text-base-100"></th>
+              <th className="bg-primary text-base-100">Avatar</th>
+              <th className="bg-primary text-base-100">Product Name</th>
+              <th className="bg-primary text-base-100">Price</th>
+              <th className="bg-primary text-base-100">Min Quantity</th>
+              <th className="bg-primary text-base-100">Max Quantity</th>
+              <th className="bg-primary text-base-100">Remove Product</th>
             </tr>
           </thead>
           <tbody>

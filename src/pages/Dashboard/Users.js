@@ -25,10 +25,10 @@ const Users = () => {
         <table class="table w-full">
           <thead>
             <tr>
-              <th className="bg-secondary text-base-100"></th>
-              <th className="bg-secondary text-base-100">Name</th>
-              <th className="bg-secondary text-base-100">Role</th>
-              <th className="bg-secondary text-base-100">Remove User</th>
+              <th className="bg-primary text-base-100"></th>
+              <th className="bg-primary text-base-100">Name</th>
+              <th className="bg-primary text-base-100">Role</th>
+              <th className="bg-primary text-base-100">Remove User</th>
             </tr>
           </thead>
           <tbody>

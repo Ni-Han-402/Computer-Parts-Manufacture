@@ -13,6 +13,7 @@ import AddProduct from "./pages/Dashboard/AddProduct";
 import Users from "./pages/Dashboard/Users";
 import ManageOrders from "./pages/Dashboard/ManageOrders";
 import ManageProducts from "./pages/Dashboard/ManageProducts";
+import Payment from "./pages/Dashboard/Payment";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="my-profile" element={<MyProfile />} />
               <Route path="add-review" element={<AddReview />} />
               <Route path="my-orders" element={<MyOrder />} />
+              <Route path="payment/:orderId" element={<Payment />} />
               <Route
                 path="users"
                 element={

@@ -23,10 +23,11 @@ const PartDetail = () => {
     const name = data.name;
     const email = data.email;
     const quantity = data.quantity;
+    const price = data.price * quantity;
     const productName = data.productName;
     const adress = data.adress;
     const phone = data.phone;
-    const order = { name, email, productName, adress, phone, quantity };
+    const order = { name, email, productName, price, adress, phone, quantity };
 
     if (order) {
       const newStock = part.availableQuantity - data.quantity;
@@ -63,7 +64,7 @@ const PartDetail = () => {
           <img className="max-h-[200px]" src={part.img} alt="Album" />
         </figure>
         <div class="card-body">
-          <h2 class="card-title">{part.name}</h2>
+          <h2 class="card-title">{part.productName}</h2>
           <h1>Price: {part.price}</h1>
           <p>{part.description}</p>
           <p>Minimum Quantity: {part.minimumQuantity}</p>
@@ -127,7 +128,7 @@ const PartDetail = () => {
             <input
               type="text"
               placeholder="Your Name"
-              value={part.name}
+              value={part.productName}
               className="input input-bordered"
               {...register("productName")}
             />
@@ -135,6 +136,24 @@ const PartDetail = () => {
               {errors.productName?.type === "required" && (
                 <span className="label-text text-error">
                   {errors.productName.message}
+                </span>
+              )}
+            </label>
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Price</span>
+            </label>
+            <input
+              type="number"
+              value={part.price}
+              className="input input-bordered"
+              {...register("price")}
+            />
+            <label className="label">
+              {errors.price?.type === "required" && (
+                <span className="label-text text-error">
+                  {errors.price.message}
                 </span>
               )}
             </label>
@@ -231,7 +250,7 @@ const PartDetail = () => {
           <input
             className="btn btn-primary w-full"
             type="submit"
-            value="REGISTER"
+            value="ORDER"
           />
         </form>
       </div>

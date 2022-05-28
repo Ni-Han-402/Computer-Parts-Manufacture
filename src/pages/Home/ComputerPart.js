@@ -24,7 +24,7 @@ const ComputerPart = ({ item }) => {
       <div class="card-body">
         <h2 class="card-title">
           {productName}
-          <span class="badge badge-secondary">NEW</span>
+          <span class="badge badge-primary">NEW</span>
         </h2>
         <p>Price: {price}$ (Per Piece)</p>
         <p>{description}</p>
@@ -32,7 +32,7 @@ const ComputerPart = ({ item }) => {
         <p>Available: {availableQuantity}</p>
         <button
           onClick={() => navigatePartDetail(_id)}
-          className="btn btn-secondary"
+          className="btn btn-primary"
         >
           PURCHASE
         </button>
