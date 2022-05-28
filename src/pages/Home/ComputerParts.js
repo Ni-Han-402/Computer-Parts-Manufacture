@@ -9,9 +9,12 @@ const ComputerParts = () => {
         COMPUTER PARTS
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {parts.map((item) => (
-          <ComputerPart key={item._id} item={item}></ComputerPart>
-        ))}
+        {parts
+          .map((item) => (
+            <ComputerPart key={item._id} item={item}></ComputerPart>
+          ))
+          .reverse()
+          .slice(0, 3)}
       </div>
     </div>
   );

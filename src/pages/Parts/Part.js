@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ComputerPart = ({ item }) => {
+const Part = ({ item }) => {
   const {
     _id,
     productName,
@@ -11,7 +11,6 @@ const ComputerPart = ({ item }) => {
     minimumQuantity,
     availableQuantity,
   } = item;
-
   const navigate = useNavigate();
   const navigatePartDetail = (id) => {
     navigate(`/part/${id}`);
@@ -41,4 +40,4 @@ const ComputerPart = ({ item }) => {
   );
 };
 
-export default ComputerPart;
+export default Part;

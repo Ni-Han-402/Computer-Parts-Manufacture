@@ -1,16 +1,36 @@
 import React from "react";
 
-const OrderRow = ({ order, index }) => {
+const OrderRow = ({ order, index, refetch }) => {
+  const { _id, email, productName, adress, phone, quantity } = order;
+
+  const handleDelete = (id) => {
+    const url = `https://nameless-refuge-04709.herokuapp.com/orders/${id}`;
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount) {
+          console.log(data);
+          refetch();
+        }
+      });
+  };
   return (
     <tr>
       <th>{index + 1}</th>
-      <td>{order.productName}</td>
-      <td>{order.quantity}</td>
-      <td>{order.email}</td>
-      <td>{order.adress}</td>
-      <td>{order.phone}</td>
+      <td>{productName}</td>
+      <td>{quantity}</td>
+      <td>{email}</td>
+      <td>{adress}</td>
+      <td>{phone}</td>
       <td>
-        <button class="btn btn-error btn-xs">Remove User</button>
+        <button onClick={() => handleDelete(_id)} class="btn btn-error btn-xs">
+          Remove User
+        </button>
       </td>
     </tr>
   );

@@ -1,24 +1,23 @@
 import React from "react";
-import banner from "../../assests/images/banner-1.png";
+import banner from "../../assests/images/banner-pc.png";
 
 const Banner = () => {
   return (
     <div className="container mx-auto px-6">
-      <div className="grid grid-cols-1 card lg:card-side bg-base-200 shadow-xl">
-        <div className="hero rounded-xl">
-          <div className="hero-content grid grid-cols-1">
-            <img src={banner} alt="" className="md:max-w-screen-sm mx-auto" />
-            <div className="text-center md:max-w-screen-sm mx-auto">
-              <h1 className="text-3xl font-bold text-primary">
-                ROGX GAMING PC
-              </h1>
-              <p className="py-6">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
-              </p>
-              <button className="btn btn-primary">Get Started</button>
-            </div>
+      <div
+        class="hero min-h-screen"
+        style={{ backgroundImage: `url(${banner})` }}
+      >
+        <div class="hero-overlay bg-opacity-50"></div>
+        <div class="hero-content text-center text-neutral-content">
+          <div class="max-w-md">
+            <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
+            <p class="mb-5">
+              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
+              et a id nisi.
+            </p>
+            <button class="btn btn-primary">Get Started</button>
           </div>
         </div>
       </div>

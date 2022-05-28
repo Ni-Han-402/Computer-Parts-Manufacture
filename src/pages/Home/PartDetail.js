@@ -79,7 +79,7 @@ const PartDetail = () => {
             <input
               type="text"
               placeholder="Your Name"
-              // value={user.displayName}
+              value={user.displayName}
               className="input input-bordered"
               {...register("name", {
                 required: {

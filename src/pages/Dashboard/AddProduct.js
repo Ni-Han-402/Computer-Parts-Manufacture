@@ -21,7 +21,7 @@ const AddProduct = () => {
       img: data.img,
     };
 
-    await fetch("http://localhost:5000/part", {
+    await fetch("https://nameless-refuge-04709.herokuapp.com/part", {
       method: "POST",
       headers: {
         "content-type": "application/json",

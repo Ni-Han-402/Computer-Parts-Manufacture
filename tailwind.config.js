@@ -4,8 +4,8 @@ module.exports = {
     themes: [
       {
         pcHouseTheme: {
-          primary: "#188196",
-          secondary: "#191E24",
+          primary: "#29375B",
+          secondary: "#39223F",
           accent: "#FDE68A",
           neutral: "#151A1E",
           "base-100": "#ffffff",

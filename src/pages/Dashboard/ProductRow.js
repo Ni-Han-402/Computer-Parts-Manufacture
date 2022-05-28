@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 const ProductRow = ({ part, index, refetch }) => {
   const { _id, img, productName, price, minimumQuantity, availableQuantity } =
     part;
-  const { partId } = useParams();
 
   const handleDelete = (id) => {
     const url = `https://nameless-refuge-04709.herokuapp.com/part/${id}`;

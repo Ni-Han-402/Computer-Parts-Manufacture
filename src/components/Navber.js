@@ -29,6 +29,11 @@ const Navber = ({ children }) => {
         </li>
       )}
       <li>
+        <NavLink to="/parts" className="rounded-lg">
+          Parts
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/reviews" className="rounded-lg">
           Reviews
         </NavLink>

@@ -1,21 +1,21 @@
 import React from "react";
-import useReview from "../../hooks/useReview";
-import Review from "./Review";
+import useParts from "../../hooks/useParts";
+import Part from "./Part";
 
-const Reviews = () => {
-  const [review, setReview] = useReview();
+const Parts = () => {
+  const [parts, setParts] = useParts();
   return (
     <div className="container mx-auto px-6 my-10">
       <h1 className="text-2xl lg:text-3xl font-bold text-primary my-10">
-        REVIEWS
+        COMPUTER PARTS
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {review
-          .map((rev) => <Review key={rev._id} rev={rev}></Review>)
+        {parts
+          .map((item) => <Part key={item._id} item={item}></Part>)
           .reverse()}
       </div>
     </div>
   );
 };
 
-export default Reviews;
+export default Parts;
